@@ -15,15 +15,51 @@ header {
     background-color: rgb(174, 174, 173) !important;
 }
 
+.card {
+    width: 100%;
+}
+
 .mainDiv {
+    width: 30rem;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.card-img-top {
+.cardImgDiv {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100px;
     background-color: rgb(39, 53, 92);
 }
+
+.card-img-top {
+    height: 70px;
+    width: 70px !important;
+}
+
+.question-footer {
+    border-top: 1px solid rgba(0, 0, 0, 0.4);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 10px;
+}
+
+.btn-warning {
+    --bs-btn-bg: #FF4E11 !important;
+    --bs-btn-border-color: #FF4E11 !important;
+    --bs-btn-hover-bg: hsl(21, 100%, 66%) !important;
+    --bs-btn-hover-border-color: hsl(21, 100%, 66%) !important;
+    --bs-btn-active-bg: hsl(21, 100%, 66%) !important;
+    --bs-btn-active-border-color: hsl(21, 100%, 66%) !important;
+    --bs-btn-disabled-bg: #FF4E11 !important;
+    --bs-btn-disabled-border-color: #FF4E11 !important;
+}
+
+
 
 footer {
     height: 100px;
