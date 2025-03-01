@@ -16,7 +16,7 @@
         crossorigin="anonymous"></script>
 </head>
 
-<body>
+<body onload="init()">
     <!--
     git init
     git add .
@@ -65,41 +65,41 @@
     </header>
 
     <div class="mainDiv">
-        <div class="card" >
+        <div class="card">
             <div class="cardImgDiv">
                 <img src="./img/logo.png" class="card-img-top" alt="brain image">
             </div>
             <div class="card-body">
-                <h5 class="card-title">Frage</h5>
+                <h5 class="card-title" id="question">Frage</h5>
 
-                <div class="card mb-2">
-                    <div class="card-body">
+                <div class="card quiz-answer-card mb-2">
+                    <div class="card-body" id="answer_1" onclick="answer(1)">
                         Antwort
                     </div>
                 </div>
 
-                <div class="card mb-2">
-                    <div class="card-body">
+                <div class="card quiz-answer-card mb-2">
+                    <div class="card-body" id="answer_2" onclick="answer(2)">
                         Antwort
                     </div>
                 </div>
 
-                <div class="card mb-2">
-                    <div class="card-body">
+                <div class="card quiz-answer-card mb-2">
+                    <div class="card-body" id="answer_3" onclick="answer(3)">
                         Antwort
                     </div>
                 </div>
 
-                <div class="card mb-2">
-                    <div class="card-body">
+                <div class="card quiz-answer-card mb-2">
+                    <div class="card-body" id="answer_4" onclick="answer(4)">
                         Antwort
                     </div>
                 </div>
 
                 <div class="question-footer">
                     <span>
-                    <b>1</b> von <b>5</b> Fragen
-                </span>
+                        <b>1</b> von <b id="questionAmount"></b> Fragen
+                    </span>
                     <button class="btn btn-warning">Nächste Frage</button>
                 </div>
 
