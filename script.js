@@ -106,12 +106,16 @@ function init() {
 }
 
 function showQuestion() {
-    let question = questions[currentQuestion];
-    document.getElementById("question").innerHTML = question["question"];
-    document.getElementById("answer_1").innerHTML = question["answer_1"];
-    document.getElementById("answer_2").innerHTML = question["answer_2"];
-    document.getElementById("answer_3").innerHTML = question["answer_3"];
-    document.getElementById("answer_4").innerHTML = question["answer_4"];
+    if (currentQuestion >= questions.length) {
+        showEndScreen();
+    } else {
+        let question = questions[currentQuestion];
+        document.getElementById("question").innerHTML = question["question"];
+        document.getElementById("answer_1").innerHTML = question["answer_1"];
+        document.getElementById("answer_2").innerHTML = question["answer_2"];
+        document.getElementById("answer_3").innerHTML = question["answer_3"];
+        document.getElementById("answer_4").innerHTML = question["answer_4"];
+    }
 }
 
 function answer(answerIndex) {
@@ -121,5 +125,30 @@ function answer(answerIndex) {
         score = score + 1;
     } else {
         document.getElementById('answer_' + answerIndex).parentNode.classList.add('bg-danger');
+        document.getElementById('answer_' + question["right_answer"]).parentNode.classList.add('bg-success');
     }
+    document.getElementById("nextbutton").disabled = false;
+}
+
+function nextQuestion() {
+    currentQuestion++;
+    document.getElementById("currentQuestionAmount").innerHTML = currentQuestion + 1;
+    document.getElementById("nextbutton").disabled = true;
+
+    for (let index = 1; index < 5; index++) {
+        document.getElementById("answer_" + index).parentNode.classList.remove('bg-success');
+        document.getElementById("answer_" + index).parentNode.classList.remove('bg-danger');
+    }
+    showQuestion();
+}
+
+function showEndScreen() {
+    let questionsLength = questions.length;
+    document.getElementById("cardBody").innerHTML = "";
+    document.getElementById("cardBody").innerHTML = getEndScreenTemplate(score, questionsLength);
+    document.getElementById("trophy").classList.add('show');
+}
+
+function restartQuiz() {
+
 }
