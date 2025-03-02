@@ -26,9 +26,18 @@ header {
     background-color: rgb(174, 174, 173) !important;
 }
 
+.navbar {
+    padding: 0 !important;
+}
+
+.container-fluid {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
 .card {
     display: flex;
-    flex-direction: row;
+    flex-direction: row !important;
     width: 100%;
 }
 
@@ -39,10 +48,13 @@ header {
     align-items: center;
 }
 
+.progress {
+    margin-bottom: 10px;
+}
+
 .cardImgDiv {
     display: flex;
     justify-content: center;
-    align-items: center;
     width: 20%;
     background-color: rgb(39, 53, 92);
     padding-top: 20px;
@@ -126,4 +138,29 @@ footer {
     align-content: center;
     justify-content: center;
     align-items: center;
+}
+
+@media (max-width: 650px) {
+    .card {
+        margin-top: 10px;
+        margin-bottom: 10px;
+        display: flex;
+        flex-direction: column !important;
+    }
+
+    .cardImgDiv {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        padding-top: 20px;
+        padding-bottom: 20px;
+    }
+
+    .container-fluid {
+        padding: 10px 12px !important;
+    }
+
+    .navbar {
+        width: 100% !important;
+    }
 }

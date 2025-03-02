@@ -99,23 +99,42 @@ let questions = [
 
 let currentQuestion = 0;
 let score = 0;
+let audioRight = new Audio('audio/right.wav');
+let audioWrong = new Audio('audio/wrong.wav');
 
 function init() {
+    document.getElementById("cardBody").innerHTML = "";
+    document.getElementById("cardBody").innerHTML = getCardTemplate();
     document.getElementById("questionAmount").innerHTML = questions.length;
-    showQuestion()
+    showQuestion();
 }
 
 function showQuestion() {
-    if (currentQuestion >= questions.length) {
+    if (gameIsOver()) {
         showEndScreen();
     } else {
-        let question = questions[currentQuestion];
-        document.getElementById("question").innerHTML = question["question"];
-        document.getElementById("answer_1").innerHTML = question["answer_1"];
-        document.getElementById("answer_2").innerHTML = question["answer_2"];
-        document.getElementById("answer_3").innerHTML = question["answer_3"];
-        document.getElementById("answer_4").innerHTML = question["answer_4"];
+        calculatePercentage();
+        renderCardTags();
     }
+}
+
+function gameIsOver() {
+    return currentQuestion >= questions.length;
+}
+
+function renderCardTags() {
+    let question = questions[currentQuestion];
+    document.getElementById("question").innerHTML = question["question"];
+    document.getElementById("answer_1").innerHTML = question["answer_1"];
+    document.getElementById("answer_2").innerHTML = question["answer_2"];
+    document.getElementById("answer_3").innerHTML = question["answer_3"];
+    document.getElementById("answer_4").innerHTML = question["answer_4"];
+}
+
+function calculatePercentage() {
+    let percent = Math.round(((currentQuestion + 1) / questions.length) * 100);
+    document.getElementById("progressBar").style.width = percent + "%";
+    document.getElementById("progressBar").innerHTML = percent;
 }
 
 function answer(answerIndex) {
@@ -123,9 +142,11 @@ function answer(answerIndex) {
     if (question["right_answer"] == answerIndex) {
         document.getElementById('answer_' + answerIndex).parentNode.classList.add('bg-success');
         score = score + 1;
+        audioRight.play();
     } else {
         document.getElementById('answer_' + answerIndex).parentNode.classList.add('bg-danger');
         document.getElementById('answer_' + question["right_answer"]).parentNode.classList.add('bg-success');
+        audioWrong.play();
     }
     document.getElementById("nextbutton").disabled = false;
 }
@@ -150,5 +171,8 @@ function showEndScreen() {
 }
 
 function restartQuiz() {
-
+    currentQuestion = 0;
+    score = 0;
+    document.getElementById("trophy").classList.remove('show');
+    init();
 }
